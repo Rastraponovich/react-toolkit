@@ -13,4 +13,5 @@ export type TPhoto = {
 
 export type DetailedAlbum = {
     photos: TPhoto[]
+    total: number | string
 } & TAlbum

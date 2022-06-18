@@ -6,12 +6,16 @@ type TnitialState = {
     albums: TAlbum[]
     loading: boolean
     currentAlbum: DetailedAlbum
+    page: number
+    limit: number
 }
 
 const initialState: TnitialState = {
     albums: [],
     loading: false,
-    currentAlbum: { photos: [] as TPhoto[] } as DetailedAlbum,
+    currentAlbum: { photos: [] as TPhoto[], total: 0 } as DetailedAlbum,
+    page: 0,
+    limit: 10,
 }
 
 export const AlbumSlice = createSlice({
@@ -28,7 +32,11 @@ export const AlbumSlice = createSlice({
             state.loading = true
         })
         builder.addCase(fetchAlbum.fulfilled, (state, action) => {
+            state.loading = false
             state.currentAlbum = action.payload
+        })
+        builder.addCase(fetchAlbum.pending, (state, action) => {
+            state.loading = true
         })
     },
 })
