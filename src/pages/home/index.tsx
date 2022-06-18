@@ -1,10 +1,38 @@
 import { AtSymbolIcon, LocationMarkerIcon, MapIcon } from "@heroicons/react/outline"
+import clsx from "clsx"
 import { CategorySelector } from "entities/categories"
+import { MouseEvent, useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
+import { useDraggable } from "shared/lib/hooks"
 import { SpriteIcons } from "shared/ui/icons/sprite-icons"
 import { CategoryCarousel } from "widgets/category-carousel"
 
 export const HomePage = () => {
+    const [checked, setChecked] = useState(false)
+    const [lock, setLock] = useState(false)
+    const { ref, onDragging, onDragStart, onDragEnd } = useDraggable()
+
+    const handleDragStart = (e: MouseEvent<HTMLLabelElement>) => {
+        setLock(true)
+        onDragStart(e)
+    }
+    const handleDragEnd = (e: MouseEvent<HTMLLabelElement>) => {
+        setLock(false)
+        onDragEnd(e)
+    }
+
+    useEffect(() => {
+        const leftval = ref.current.style.left.slice(0, -2)
+        const topval = ref.current.style.top.slice(0, -2)
+
+        if (ref.current && Number(leftval) < 40 && Number(leftval) > 18 && Number(topval) > 300) {
+            setChecked(true)
+            setLock(false)
+        } else if (ref.current && Number(leftval) > 40) {
+            setChecked(false)
+        }
+    })
+
     return (
         <div className="flex flex-col bg-gradient-to-t from-[#211F20] to-[#44403F] font-Gilroy">
             <section className="relative flex flex-col bg-hero bg-cover bg-no-repeat px-[100px] pb-[137px] pt-[72px] text-white">
@@ -222,6 +250,27 @@ export const HomePage = () => {
                     </div>
                 </div>
             </section>
+
+            <div className="relative flex h-[400px] w-full flex-col overflow-hidden bg-white px-10 text-black">
+                <div ref={ref} className="absolute">
+                    <label
+                        onMouseDown={handleDragStart}
+                        onMouseUp={handleDragEnd}
+                        onMouseLeave={onDragEnd}
+                        onMouseMove={onDragging}
+                        className=" flex items-center  justify-between space-x-8  p-4 "
+                    >
+                        <input type="checkbox" checked={checked} />
+                        <span>checkbox</span>
+                    </label>
+                </div>
+
+                <input
+                    type="checkbox"
+                    checked={true}
+                    className={clsx("absolute bottom-4  duration-700 ", lock ? "opacity-1" : "opacity-0 ")}
+                />
+            </div>
         </div>
     )
 }
