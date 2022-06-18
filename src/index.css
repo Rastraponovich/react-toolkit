@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    @apply font-Gilroy;
+}
+
+@font-face {
+    font-family: "zing-rust";
+    src: url(../public/assets/fonts/zing-rust.ttf);
+}
+
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 300;
+    src: url(../public/assets/fonts/Gilroy-Light.woff);
+}
+
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 400;
+    src: url(../public/assets/fonts/Gilroy-Regular.woff);
+}
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 500;
+    src: url(../public/assets/fonts/Gilroy-Medium.woff);
+}
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 600;
+    src: url(../public/assets/fonts/Gilroy-SemiBold.woff);
+}
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 700;
+    src: url(../public/assets/fonts/Gilroy-Bold.woff);
+}
+
+@layer base {
+    body {
+        margin: 0;
+        @apply font-Gilroy;
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+@layer components {
+}
