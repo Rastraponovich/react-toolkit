@@ -1,0 +1,5 @@
+import { RootState } from "app/providers"
+
+export const useMessage = (state: RootState) => state.alert.message
+export const useOpened = (state: RootState) => state.alert.opened
+export const useAlertType = (state: RootState) => state.alert.type

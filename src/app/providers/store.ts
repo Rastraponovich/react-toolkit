@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { AlbumModel } from "entities/albums"
+import { AlertModel } from "widgets/alert"
 // ...
 
 export const store = configureStore({
     reducer: {
         album: AlbumModel.stores.AlbumSlice.reducer,
+        [AlertModel.stores.AlbumSlice.name]: AlertModel.stores.AlbumSlice.reducer,
     },
 })
 
