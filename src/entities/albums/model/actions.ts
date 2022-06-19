@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit"
 import { RootState } from "app/providers"
 import { API, QueryParams } from "shared/lib"
-import { hideAlert, showAlert } from "widgets/alert/model/actions"
+import { hideAlert, showAlert, showAlertFx } from "widgets/alert/model/actions"
 
 const getAlbums = createAction("albums/getAlbums")
 const getAlbum = createAction("albums/getAlbum")
@@ -21,13 +21,9 @@ export const fetchAlbum = createAsyncThunk(
         const album = await API.getAlbum(id)
         const photos = await API.getAlbumPhotos(id, { _limit: limit, _page })
 
-        dispatch(showAlert(`загруженно ${photos.data.length}`))
+        dispatch(showAlertFx(`загруженно ${photos.data.length}`))
 
         const total = photos.headers["x-total-count"]
-
-        const timer = setTimeout(() => {
-            dispatch(hideAlert())
-        }, 3000)
 
         return { ...album.data, photos: photos.data, total }
     }

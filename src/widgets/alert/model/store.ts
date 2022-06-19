@@ -11,17 +11,23 @@ enum EAlertTypes {
     INFO = "INFO",
     DEFAULT = "DEFAULT",
 }
-
+type TMessage = {
+    message: string
+    id: string
+    type: TAlertType
+}
 type TnitialState = {
     opened: boolean
     message: string
     type: TAlertType
+    messages: TMessage[]
 }
 
 const initialState: TnitialState = {
     opened: false,
     message: "",
     type: EAlertTypes.INFO,
+    messages: [],
 }
 
 export const AlbumSlice = createSlice({
@@ -31,10 +37,14 @@ export const AlbumSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(showAlert, (state, action) => {
             state.opened = true
-            state.message = action.payload
+            state.messages.push({ message: action.payload.message, type: EAlertTypes.SUCCESS, id: action.payload.id })
         })
-        builder.addCase(hideAlert, (state, payload) => {
+        builder.addCase(hideAlert, (state, action) => {
             state.opened = false
+            state.messages.splice(
+                state.messages.findIndex((i) => i.id === action.payload),
+                1
+            )
         })
     },
 })

@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "app/hooks"
 import { AlbumModel, PhotosList } from "entities/albums"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useParams, useSearchParams } from "react-router-dom"
 import { Pagination } from "widgets/pagination"
 
@@ -15,11 +15,14 @@ export const AlbumPage = () => {
     const limit = useAppSelector(AlbumModel.selectors.useLimit)
 
     useEffect(() => {
-        setPage(search.get("page"))
+        setPage((prev) => (prev === search.get("page") ? prev : search.get("page")))
     }, [search])
 
     useEffect(() => {
-        dispatch(AlbumModel.actions.fetchAlbum({ id: Number(params.id), _page: Number(page) }))
+        const getPage = () => {
+            dispatch(AlbumModel.actions.fetchAlbum({ id: Number(params.id), _page: Number(page) }))
+        }
+        getPage()
     }, [page])
 
     const handleClick = useCallback(
