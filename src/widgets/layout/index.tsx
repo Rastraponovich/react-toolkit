@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom"
-import { Alert } from "widgets/alert"
+import { Alerts } from "widgets/alert"
 import { Footer } from "widgets/footer"
 import { Header } from "widgets/header"
 
@@ -10,7 +10,7 @@ export const Layout = () => {
             <main className="grow">
                 <Outlet />
             </main>
-            <Alert />
+            <Alerts />
             <Footer />
         </>
     )

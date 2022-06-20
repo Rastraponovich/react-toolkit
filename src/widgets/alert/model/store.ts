@@ -1,21 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { fetchAlbum } from "entities/albums/model/actions"
 import { hideAlert, showAlert } from "./actions"
+import { TAlertType, TMessage, EAlertTypes } from "../lib"
 
-type TAlertType = EAlertTypes
-
-enum EAlertTypes {
-    SUCCESS = "SUCCESS",
-    WARNING = "WARNING",
-    ERROR = "ERROR",
-    INFO = "INFO",
-    DEFAULT = "DEFAULT",
-}
-type TMessage = {
-    message: string
-    id: string
-    type: TAlertType
-}
 type TnitialState = {
     opened: boolean
     message: string
@@ -37,7 +23,11 @@ export const AlbumSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(showAlert, (state, action) => {
             state.opened = true
-            state.messages.push({ message: action.payload.message, type: EAlertTypes.SUCCESS, id: action.payload.id })
+            state.messages.push({
+                message: action.payload.message,
+                type: action.payload.type || EAlertTypes.INFO,
+                id: action.payload.id,
+            })
         })
         builder.addCase(hideAlert, (state, action) => {
             state.opened = false

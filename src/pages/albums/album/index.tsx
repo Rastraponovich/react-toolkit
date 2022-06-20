@@ -8,7 +8,7 @@ export const AlbumPage = () => {
     const params = useParams()
     const dispatch = useAppDispatch()
     const [search, setSearch] = useSearchParams()
-    const [page, setPage] = useState(search.get("page"))
+    const [page, setPage] = useState<string | null>(null)
 
     const album = useAppSelector(AlbumModel.selectors.useCurrentAlbum)
     const loading = useAppSelector(AlbumModel.selectors.usePending)
@@ -19,18 +19,12 @@ export const AlbumPage = () => {
     }, [search])
 
     useEffect(() => {
-        const getPage = () => {
-            dispatch(AlbumModel.actions.fetchAlbum({ id: Number(params.id), _page: Number(page) }))
-        }
-        getPage()
+        if (page) dispatch(AlbumModel.actions.fetchAlbum({ id: Number(params.id), _page: Number(page) }))
     }, [page])
 
-    const handleClick = useCallback(
-        (id: number) => {
-            setSearch({ page: String(id) })
-        },
-        [search]
-    )
+    const handleClick = useCallback((id: number) => {
+        setSearch({ page: String(id) }, { replace: true })
+    }, [])
 
     return (
         <section className="flex  flex-col px-10 py-5 text-gray-900">
