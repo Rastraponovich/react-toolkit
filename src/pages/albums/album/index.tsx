@@ -1,8 +1,10 @@
 import { useAppDispatch, useAppSelector } from "app/hooks"
 import { AlbumModel, PhotosList } from "entities/albums"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { lazy, useCallback, useEffect, useRef, useState } from "react"
 import { useParams, useSearchParams } from "react-router-dom"
 import { Pagination } from "widgets/pagination"
+
+const UserCard = lazy(() => import("entities/users").then((module) => ({ default: module.UserCard })))
 
 export const AlbumPage = () => {
     const params = useParams()
@@ -11,7 +13,7 @@ export const AlbumPage = () => {
     const [page, setPage] = useState<string | null>(null)
 
     const album = useAppSelector(AlbumModel.selectors.useCurrentAlbum)
-    const loading = useAppSelector(AlbumModel.selectors.usePending)
+    const loading = useAppSelector(AlbumModel.selectors.useLoading)
     const limit = useAppSelector(AlbumModel.selectors.useLimit)
 
     useEffect(() => {
@@ -28,11 +30,16 @@ export const AlbumPage = () => {
 
     return (
         <section className="flex  flex-col px-10 py-5 text-gray-900">
-            <h2 className="my-4 text-2xl font-semibold">Альбом: {album.title}</h2>
+            <div className="grid grid-cols-2 gap-4">
+                <h2 className="my-4 text-2xl font-semibold">Альбом: {album.title}</h2>
+                <UserCard />
+            </div>
+
             <div className="flex flex-col space-y-2 rounded-lg bg-gray-100 p-2 text-xl">
                 <h3 className="font-semibold first-letter:uppercase">
                     фотографии: {Number(page) * limit} / {album.total} шт.
                 </h3>
+
                 <PhotosList />
             </div>
 

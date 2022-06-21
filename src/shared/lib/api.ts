@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios"
 import { DetailedAlbum, TAlbum, TPhoto } from "entities/albums/lib"
+import { TUser } from "entities/users/lib/models"
 import { QueryParams } from "./model"
 
 const API_URL = "https://jsonplaceholder.typicode.com/"
@@ -12,3 +13,6 @@ export const getAlbum = async (id: number, params?: QueryParams) =>
     APIInstance.get<any, AxiosResponse<TAlbum>>("/albums/" + id, { params })
 export const getAlbumPhotos = async (id: number, params?: QueryParams) =>
     APIInstance.get<any, AxiosResponse<TPhoto[]>>(`/albums/${id}/photos`, { params })
+export const getUser = async (id: number) => APIInstance.get<number, AxiosResponse<TUser>>(`/users/${id}`)
+
+export const getUserAlbums = async (id: number) => APIInstance.get<number, AxiosResponse<any>>(`/users/${id}/albums`)

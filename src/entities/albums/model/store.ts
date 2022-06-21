@@ -10,6 +10,7 @@ type TnitialState = {
     limit: number
     totalCount: number
     requestId: string | undefined
+    pending: boolean
 }
 
 const initialState: TnitialState = {
@@ -20,6 +21,7 @@ const initialState: TnitialState = {
     limit: 10,
     totalCount: 0,
     requestId: undefined,
+    pending: false,
 }
 
 export const AlbumSlice = createSlice({
@@ -32,11 +34,13 @@ export const AlbumSlice = createSlice({
             state.totalCount = action.payload.totalCount
             state.requestId = undefined
             state.loading = false
+            state.pending = false
         })
         builder.addCase(fetchAlbums.pending, (state, action) => {
             state.albums = []
             state.requestId = action.meta.requestId
             state.loading = true
+            state.pending = true
         })
         builder.addCase(fetchAlbum.fulfilled, (state, action) => {
             state.loading = false

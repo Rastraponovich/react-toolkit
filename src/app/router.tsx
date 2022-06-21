@@ -4,6 +4,7 @@ import { Routes, Route, Navigate, Outlet } from "react-router-dom"
 import { Layout } from "widgets/layout"
 
 const AlbumPage = lazy(() => import("pages/albums/album").then((module) => ({ default: module.AlbumPage })))
+const UserPage = lazy(() => import("pages/users/id").then((module) => ({ default: module.UserPage })))
 
 export const Router = () => {
     return (
@@ -16,6 +17,14 @@ export const Router = () => {
                     element={
                         <Suspense fallback={<p> Loading...</p>}>
                             <AlbumPage />
+                        </Suspense>
+                    }
+                />
+                <Route
+                    path="users/:id"
+                    element={
+                        <Suspense fallback={<p> Loading...</p>}>
+                            <UserPage />
                         </Suspense>
                     }
                 />
