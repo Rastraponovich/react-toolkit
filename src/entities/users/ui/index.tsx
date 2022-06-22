@@ -12,8 +12,6 @@ export const UserCard = () => {
             <span>website: {user?.website}</span>
             <span>username: {user?.username}</span>
 
-            <Link to={`/users/${user.id}`}> перейти</Link>
-
             <h3 className="font-bold">Company: </h3>
             <div className="flex flex-col rounded-lg border p-2">
                 <span>{user.company?.name}</span>

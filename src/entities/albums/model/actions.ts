@@ -1,12 +1,13 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit"
-import { RootState } from "app/providers"
-import { AxiosError } from "axios"
 import { fetchUser } from "entities/users/model/actions"
-import { API, QueryParams } from "shared/lib"
+import type { QueryParams } from "shared/lib"
 import { EAlertTypes } from "widgets/alert/lib"
 import { showAlertFx } from "widgets/alert/model/actions"
+import { API } from "../lib"
 
 const getAlbums = createAction("albums/getAlbums")
+const getUserAlbums = createAction("albums/getUserAlbums")
+
 const getAlbum = createAction("albums/getAlbum")
 
 export const fetchAlbums = createAsyncThunk(
@@ -42,5 +43,22 @@ export const fetchAlbum = createAsyncThunk(
         const total = photos.headers["x-total-count"]
 
         return { ...album.data, photos: photos.data, total }
+    }
+)
+
+export const fetchUserAlbums = createAsyncThunk(
+    getUserAlbums.type,
+    async (id: number, { getState, dispatch, requestId }) => {
+        try {
+            const albums = await API.getUserAlbums(id)
+
+            dispatch(showAlertFx({ message: `загруженно ${albums.data.length}`, type: EAlertTypes.SUCCESS }))
+
+            const total = albums.headers["x-total-count"]
+
+            return { items: albums.data, totalCount: Number(total), requestId }
+        } catch (error) {
+            dispatch(showAlertFx({ message: String(error), type: EAlertTypes.ERROR }))
+        }
     }
 )
