@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit"
 import { hideAlert, showAlert } from "./actions"
 import { TAlertType, TMessage, EAlertTypes } from "../lib"
 
-type TnitialState = {
+type TInitialState = {
     opened: boolean
     message: string
     type: TAlertType
     messages: TMessage[]
 }
 
-const initialState: TnitialState = {
+const initialState: TInitialState = {
     opened: false,
     message: "",
     type: EAlertTypes.INFO,

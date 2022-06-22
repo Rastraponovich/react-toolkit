@@ -3,7 +3,7 @@ import { TAlbum } from "entities/albums/lib"
 import { TUser } from "../lib/models"
 import { fetchUser } from "./actions"
 
-type TnitialState = {
+type TInitialState = {
     user: TUser
     pending: boolean
     loading: boolean
@@ -11,7 +11,7 @@ type TnitialState = {
     albums: TAlbum[]
 }
 
-const initialState: TnitialState = {
+const initialState: TInitialState = {
     user: { name: "" } as TUser,
     pending: false,
     loading: false,
