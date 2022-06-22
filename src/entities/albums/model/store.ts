@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { DetailedAlbum, TAlbum, TPhoto } from "../lib"
 import { fetchAlbum, fetchAlbums } from "./actions"
 
-type TnitialState = {
+type TInitialState = {
     albums: TAlbum[]
     loading: boolean
     currentAlbum: DetailedAlbum
@@ -13,7 +13,7 @@ type TnitialState = {
     pending: boolean
 }
 
-const initialState: TnitialState = {
+const initialState: TInitialState = {
     albums: [],
     loading: false,
     currentAlbum: { photos: [] as TPhoto[], total: 0 } as DetailedAlbum,
