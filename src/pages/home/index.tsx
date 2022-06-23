@@ -7,7 +7,7 @@ export const HomePage = () => {
                 <Link to="/posts" className="rounded-lg border p-2 text-xl font-bold">
                     список постов
                 </Link>
-                <Link to="/albums" className="rounded-lg border p-2 text-xl font-bold">
+                <Link to="/albums?page=1" className="rounded-lg border p-2 text-xl font-bold">
                     список альбомов
                 </Link>
             </div>
