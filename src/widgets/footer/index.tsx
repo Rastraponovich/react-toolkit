@@ -1,7 +1,7 @@
 export const Footer = () => {
     return (
-        <footer className="flex items-center p-2 ">
-            <h3>World</h3>
+        <footer className="flex items-center bg-gradient-to-bl from-blue-50 to-blue-600 p-2 text-white">
+            <h3>JSon placeholder view</h3>
         </footer>
     )
 }

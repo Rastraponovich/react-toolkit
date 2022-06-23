@@ -1,5 +1,6 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit"
 import { fetchUser } from "entities/users/model/actions"
+import { ChangeEvent } from "react"
 import type { QueryParams } from "shared/lib"
 import { EAlertTypes } from "widgets/alert/lib"
 import { showAlertFx } from "widgets/alert/model/actions"
@@ -9,6 +10,8 @@ const getPosts = createAction("posts/getPosts")
 const getPostsComments = createAction("posts/getPostComments")
 
 const getPost = createAction("posts/getPost")
+
+export const setComment = createAction<string>("posts/setComment")
 
 export const fetchPosts = createAsyncThunk(
     getPosts.type,
