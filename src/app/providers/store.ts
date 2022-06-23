@@ -1,20 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit"
-import { AlbumModel } from "entities/albums"
-import { PostsModel } from "entities/posts"
-import { UserModel } from "entities/users"
+
 import { AlertModel } from "widgets/alert"
-// ...
+import { DishModel } from "entities/dishes"
+import { CategoryModel } from "entities/categories"
+import { OrderModel } from "features/order"
 
 export const store = configureStore({
     reducer: {
-        [PostsModel.stores.PostsSlice.name]: PostsModel.stores.PostsSlice.reducer,
-        album: AlbumModel.stores.AlbumSlice.reducer,
+        [DishModel.stores.DishSlice.name]: DishModel.stores.DishSlice.reducer,
+        [OrderModel.stores.OrderSlice.name]: OrderModel.stores.OrderSlice.reducer,
         [AlertModel.stores.AlbumSlice.name]: AlertModel.stores.AlbumSlice.reducer,
-        [UserModel.stores.UsersSlice.name]: UserModel.stores.UsersSlice.reducer,
+        [CategoryModel.stores.CategorySlice.name]: CategoryModel.stores.CategorySlice.reducer,
     },
 })
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch
