@@ -49,7 +49,7 @@ export const CommentList = () => {
 
             <div className="flex flex-col space-y-2">
                 {comments?.map((comment) => (
-                    <Comment {...comment} />
+                    <Comment {...comment} key={comment.id} />
                 ))}
             </div>
         </div>

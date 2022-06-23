@@ -40,7 +40,9 @@ export const AlbumsPage = () => {
             </div>
 
             {pending ? <AlbumListSkeleton /> : <AlbumList />}
-            <Pagination loading={loading} currentPage={page!} cb={handleSetPage} count={totalCount} limit={10} />
+            {totalCount > 0 && (
+                <Pagination loading={loading} currentPage={page!} cb={handleSetPage} count={totalCount} limit={10} />
+            )}
         </section>
     )
 }
