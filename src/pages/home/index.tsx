@@ -1,53 +1,16 @@
-import { useAppDispatch, useAppSelector } from "app/hooks"
-import { AlbumList, AlbumListSkeleton, AlbumModel } from "entities/albums"
-import { GetAlbumsButton } from "features/get-albums"
-import { useCallback, useEffect, useState } from "react"
-import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom"
-import { Pagination } from "widgets/pagination"
+import { Link } from "react-router-dom"
 
 export const HomePage = () => {
-    const dispatch = useAppDispatch()
-    const [search, setSearch] = useSearchParams()
-    const pending = useAppSelector(AlbumModel.selectors.usePending)
-    const loading = useAppSelector(AlbumModel.selectors.useLoading)
-
-    const totalCount = useAppSelector(AlbumModel.selectors.useAlbumsCount)
-
-    const [page, setPage] = useState(search.get("page"))
-
-    useEffect(() => {
-        dispatch(AlbumModel.actions.fetchAlbums({ _page: Number(page), _limit: 10 }))
-    }, [page])
-
-    const handleSetPage = useCallback(
-        (page: number) => {
-            setSearch({ page: String(page) })
-        },
-        [search]
-    )
-
-    useEffect(() => {
-        setPage(search.get("page"))
-    }, [search])
-
     return (
-        <section className="flex grow flex-col justify-between space-y-4">
-            {/* <GetAlbumsButton /> */}
-
-            <div className="flex rounded-lg border p-2 text-gray-900">
-                <Link to="/posts" className="text-xl font-bold">
+        <section className="flex grow flex-col justify-between space-y-4 px-10 py-5 text-gray-900">
+            <div className="flex space-x-4">
+                <Link to="/posts" className="rounded-lg border p-2 text-xl font-bold">
                     список постов
                 </Link>
+                <Link to="/albums" className="rounded-lg border p-2 text-xl font-bold">
+                    список альбомов
+                </Link>
             </div>
-
-            <div className="flex justify-end px-5">
-                <span>
-                    показано {Number(page) * 10} из {totalCount}
-                </span>
-            </div>
-
-            {pending ? <AlbumListSkeleton /> : <AlbumList />}
-            <Pagination loading={loading} currentPage={page!} cb={handleSetPage} count={totalCount} limit={10} />
         </section>
     )
 }
