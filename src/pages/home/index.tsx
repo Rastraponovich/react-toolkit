@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "app/hooks"
 import { AlbumList, AlbumListSkeleton, AlbumModel } from "entities/albums"
 import { GetAlbumsButton } from "features/get-albums"
 import { useCallback, useEffect, useState } from "react"
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import { Pagination } from "widgets/pagination"
 
 export const HomePage = () => {
@@ -32,7 +32,14 @@ export const HomePage = () => {
 
     return (
         <section className="flex grow flex-col justify-between space-y-4">
-            <GetAlbumsButton />
+            {/* <GetAlbumsButton /> */}
+
+            <div className="flex rounded-lg border p-2 text-gray-900">
+                <Link to="/posts" className="text-xl font-bold">
+                    список постов
+                </Link>
+            </div>
+
             <div className="flex justify-end px-5">
                 <span>
                     показано {Number(page) * 10} из {totalCount}
