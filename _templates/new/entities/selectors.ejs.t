@@ -1,5 +1,5 @@
 ---
-to: src/entities/<%=name%>/model/selectors.ts
+to: src/entities/<%=h.inflection.pluralize(name)%>/model/selectors.ts
 ---
 
 

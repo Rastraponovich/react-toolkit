@@ -1,5 +1,5 @@
 ---
-to: src/entities/<%=name%>/lib/index.ts
+to: src/entities/<%=h.inflection.pluralize(name)%>/lib/index.ts
 ---
 export * from './models'
 

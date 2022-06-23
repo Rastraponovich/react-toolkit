@@ -1,4 +1,4 @@
 ---
-to: src/entities/<%=name%>/model/actions.ts
+to: src/entities/<%=h.inflection.pluralize(name)%>/model/actions.ts
 ---
 export {}

@@ -1,5 +1,5 @@
 ---
-to: src/entities/<%=name%>/index.ts
+to: src/entities/<%=h.inflection.pluralize(name)%>/index.ts
 ---
 export * from './ui'
 export * as <%=h.capitalize(name)%>Model from './model'

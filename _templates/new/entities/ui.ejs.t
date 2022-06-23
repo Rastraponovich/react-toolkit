@@ -1,5 +1,5 @@
 ---
-to: src/entities/<%=name%>/ui/index.tsx
+to: src/entities/<%=h.inflection.pluralize(name)%>/ui/index.tsx
 ---
 import clsx from 'clsx'
 import { useAppSelector } from "app/hooks"
