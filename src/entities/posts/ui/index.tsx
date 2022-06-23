@@ -13,7 +13,7 @@ interface PostProps {
 }
 export const Post = memo(({ post }: PostProps) => {
     return (
-        <div className="flex space-x-4 rounded-lg border-2 bg-gray-100 p-2 text-sm text-gray-600">
+        <div className="flex space-x-4 rounded-lg border-2 bg-gray-100 p-2 text-sm text-gray-600 hover:border-orange-300">
             <UserCircleIcon className="h-10 w-10 shrink-0 text-gray-500" />
             <div className="sapce-y-2 flex grow flex-col  font-semibold">
                 <h3>{post.title}</h3>
@@ -30,7 +30,7 @@ export const PostsList = () => {
     return (
         <div className="grid gap-4">
             {posts.map((item) => (
-                <Link key={item.id} to={`/posts/${item.id}`}>
+                <Link key={item.id} to={`/posts/${item.id}`} className="duration-150  hover:shadow-lg">
                     <Post post={item} />
                 </Link>
             ))}
@@ -49,7 +49,7 @@ export const CommentList = () => {
 
             <div className="flex flex-col space-y-2">
                 {comments?.map((comment) => (
-                    <Comment {...comment} />
+                    <Comment {...comment} key={comment.id} />
                 ))}
             </div>
         </div>

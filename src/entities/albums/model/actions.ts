@@ -16,13 +16,13 @@ export const fetchAlbums = createAsyncThunk(
         try {
             const response = await API.getAlbums(params)
 
-            dispatch(showAlertFx({ message: `загруженно ${response.data.length}`, type: EAlertTypes.SUCCESS }))
+            dispatch(showAlertFx({ message: `загруженно ${response.data.length} альбомов`, type: EAlertTypes.SUCCESS }))
 
             const total = response.headers["x-total-count"]
 
             return { items: response.data, totalCount: Number(total), requestId }
         } catch (error) {
-            dispatch(showAlertFx({ message: String(error), type: EAlertTypes.ERROR }))
+            dispatch(showAlertFx({ message: "произошла ошибка загрузки альбомов", type: EAlertTypes.ERROR }))
         }
     }
 )
@@ -37,7 +37,7 @@ export const fetchAlbum = createAsyncThunk(
         const album = await API.getAlbum(id)
         const photos = await API.getAlbumPhotos(id, { _limit: limit, _page })
 
-        dispatch(showAlertFx({ message: `загруженно ${photos.data.length}` }))
+        dispatch(showAlertFx({ message: `загруженно ${photos.data.length} фотографий к альбому с id ${id}` }))
         dispatch(fetchUser(album.data.userId))
 
         const total = photos.headers["x-total-count"]
@@ -52,13 +52,20 @@ export const fetchUserAlbums = createAsyncThunk(
         try {
             const albums = await API.getUserAlbums(id)
 
-            dispatch(showAlertFx({ message: `загруженно ${albums.data.length}`, type: EAlertTypes.SUCCESS }))
+            dispatch(
+                showAlertFx({
+                    message: `загруженно ${albums.data.length} альбомов пользователя с id ${id}`,
+                    type: EAlertTypes.SUCCESS,
+                })
+            )
 
             const total = albums.headers["x-total-count"]
 
             return { items: albums.data, totalCount: Number(total), requestId }
         } catch (error) {
-            dispatch(showAlertFx({ message: String(error), type: EAlertTypes.ERROR }))
+            dispatch(
+                showAlertFx({ message: "произошла ошибка загрузки альбомов для пользователя", type: EAlertTypes.ERROR })
+            )
         }
     }
 )

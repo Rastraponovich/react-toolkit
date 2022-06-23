@@ -3,7 +3,7 @@ export type TPosts = {
     id: number
     title: string
     body: string
-    comments?: TComments[]
+    comments: TComments[]
 }
 
 export type TComments = {
