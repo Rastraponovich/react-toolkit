@@ -5,6 +5,8 @@ import { Layout } from "widgets/layout"
 
 const AlbumPage = lazy(() => import("pages/albums/album").then((module) => ({ default: module.AlbumPage })))
 const UserPage = lazy(() => import("pages/users/id").then((module) => ({ default: module.UserPage })))
+const PostsPage = lazy(() => import("pages/posts").then((module) => ({ default: module.PostsPage })))
+const PostPage = lazy(() => import("pages/posts/id").then((module) => ({ default: module.PostPage })))
 
 export const Router = () => {
     return (
@@ -28,6 +30,25 @@ export const Router = () => {
                         </Suspense>
                     }
                 />
+
+                <Route path="posts">
+                    <Route
+                        index
+                        element={
+                            <Suspense fallback={<p> Loading...</p>}>
+                                <PostsPage />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path=":id"
+                        element={
+                            <Suspense fallback={<p> Loading...</p>}>
+                                <PostPage />
+                            </Suspense>
+                        }
+                    />
+                </Route>
             </Route>
             {/* <Route path="booking" element={<PrivateOutlet />}>
                     <Route index element={<BookingPage />} />

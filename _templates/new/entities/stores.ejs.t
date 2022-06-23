@@ -1,5 +1,5 @@
 ---
-to: src/entities/<%=name%>/model/store.ts
+to: src/entities/<%=h.inflection.pluralize(name)%>/model/store.ts
 ---
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import {T<%=h.capitalize(name)%>} from '../lib'

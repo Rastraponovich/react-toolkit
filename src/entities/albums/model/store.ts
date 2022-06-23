@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { DetailedAlbum, TAlbum, TPhoto } from "../lib"
-import { fetchAlbum, fetchAlbums } from "./actions"
+import { fetchAlbum, fetchAlbums, fetchUserAlbums } from "./actions"
 
 type TInitialState = {
     albums: TAlbum[]
@@ -48,6 +48,20 @@ export const AlbumSlice = createSlice({
         })
         builder.addCase(fetchAlbum.pending, (state, action) => {
             state.loading = true
+        })
+
+        builder.addCase(fetchUserAlbums.fulfilled, (state, action: PayloadAction<any>) => {
+            state.albums = action.payload.items
+            state.totalCount = action.payload.totalCount
+            state.requestId = undefined
+            state.loading = false
+            state.pending = false
+        })
+        builder.addCase(fetchUserAlbums.pending, (state, action) => {
+            state.albums = []
+            state.requestId = action.meta.requestId
+            state.loading = true
+            state.pending = true
         })
     },
 })

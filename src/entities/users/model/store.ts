@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { TAlbum } from "entities/albums/lib"
 import { TUser } from "../lib/models"
 import { fetchUser } from "./actions"
 
@@ -8,7 +7,6 @@ type TInitialState = {
     pending: boolean
     loading: boolean
     requestId: string | undefined
-    albums: TAlbum[]
 }
 
 const initialState: TInitialState = {
@@ -16,7 +14,6 @@ const initialState: TInitialState = {
     pending: false,
     loading: false,
     requestId: undefined,
-    albums: [],
 }
 
 export const UsersSlice = createSlice({
@@ -29,12 +26,10 @@ export const UsersSlice = createSlice({
             state.requestId = undefined
             state.loading = false
             state.pending = false
-            state.albums = action.payload.albums
         })
         builder.addCase(fetchUser.pending, (state, action) => {
             state.user = {} as TUser
             state.requestId = action.meta.requestId
-            state.albums = []
             state.loading = true
             state.pending = true
         })
