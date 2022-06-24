@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { ChangeEvent } from "react"
+
 import { TComments, TPosts } from "../lib"
-import { fetchPost, fetchPostComments, fetchPosts, setComment } from "./actions"
+import { fetchPost, fetchPostComments, fetchPosts, fetchUserPosts, setComment } from "./actions"
+
+
 
 type TInitialState = {
     posts: TPosts[]
@@ -72,6 +75,11 @@ export const PostsSlice = createSlice({
             state.loading = true
             state.pending = true
             state.comment = ""
+
+        })
+        builder.addCase(fetchUserPosts.fulfilled, (state, action) => {
+            state.posts = action.payload!
+
         })
     },
 })
