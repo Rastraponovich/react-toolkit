@@ -14,8 +14,6 @@ const getUserPosts = createAction("posts/getUserPosts")
 
 export const setComment = createAction<string>("posts/setComment")
 
-export const setComment = createAction<string>("posts/setComment")
-
 export const fetchPosts = createAsyncThunk(
     getPosts.type,
     async (params: QueryParams, { getState, dispatch, requestId }) => {
