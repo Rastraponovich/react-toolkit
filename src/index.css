@@ -21,5 +21,10 @@ code {
     position: relative;
 }
 
+@font-face {
+    font-family: "zing-rust";
+    src: url(../public/assets/fonts/zing-rust.ttf);
+}
+
 @layer components {
 }

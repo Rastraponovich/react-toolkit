@@ -26,7 +26,7 @@ export const CategorySelector = () => {
 
     return (
         <section>
-            <nav className="relative flex space-x-6 overflow-x-auto border-b border-white/10 px-20   text-lg font-normal leading-[21px] text-[#CFCFCF]">
+            <nav className="relative flex space-x-6 overflow-hidden border-b border-white/10 px-20   text-lg font-normal leading-[21px] text-[#CFCFCF]">
                 {categories.map((category) => (
                     <CategoryNavLink active={active === category.id} key={category.id} {...category} />
                 ))}
@@ -45,7 +45,7 @@ const CategoryNavLink = ({ path, active, name, id }: CategoryNavLinkProps) => {
     return (
         <Link
             to={`/?category=${id}`}
-            className={clsx("py-[29px]", active && "border-b-[3px]  border-[#618967] font-medium text-white")}
+            className={clsx("shrink-0 py-[29px]", active && "border-b-[3px]  border-[#618967] font-medium text-white")}
         >
             {name}
         </Link>

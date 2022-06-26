@@ -7,6 +7,11 @@ module.exports = {
         extend: {
             backgroundImage: {
                 hero: "url('/public/assets/hero.jpg')",
+                cafe: "url('/public/assets/cafe.png')",
+                map: "url('/public/assets/map.jpg')",
+            },
+            fontFamily: {
+                "zing-rust": ["zing-rust", "system-ui"],
             },
             keyframes: {
                 slideArrow: {
