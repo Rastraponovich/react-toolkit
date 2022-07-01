@@ -1,5 +1,5 @@
 import { MinusIcon } from "@heroicons/react/outline"
-import { PlusCircleIcon } from "@heroicons/react/solid"
+import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/solid"
 import { TDish } from "entities/dishes/lib"
 import { TOrderDishes } from "features/order/lib"
 import { useDecreaseDish } from "features/order/model/actions"
@@ -29,7 +29,7 @@ export const RoundedDecreaseDishButton = memo(({ id }: RoundedDecreaseDishButton
 
     return (
         <button onClick={handleClick}>
-            <PlusCircleIcon className="h-[30px] w-[30px] rounded-full bg-white text-[#72A479]" />
+            <MinusCircleIcon className="h-[30px] w-[30px] rounded-full bg-white text-[#72A479]" />
         </button>
     )
 })

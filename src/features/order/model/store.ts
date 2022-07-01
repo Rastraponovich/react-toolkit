@@ -53,13 +53,21 @@ export const OrderSlice = createSlice({
             }
         },
         removeDishFromOrder(state, action) {
-            const currentDishIdx = state.dishes.findIndex((dish) => dish.id === action.payload)
-            const currentDish = state.dishes.find((line) => line.id === action.payload)
+            //разобратся
 
-            if (currentDishIdx && currentDish) {
-                state.totalItemsCount = state.totalItemsCount - currentDish.quantity
-                state.totalPrice = state.totalPrice - currentDish.price * currentDish.quantity
-                state.dishes.splice(currentDishIdx, 1)
+            if (state.dishes.length === 1) {
+                state.dishes = []
+                state.totalPrice = 0
+                state.totalItemsCount = 0
+            } else {
+                const currentDishIdx = state.dishes.findIndex((line) => line.id === action.payload)
+                const currentDish = state.dishes.find((line) => line.id === action.payload)
+
+                if (currentDishIdx && currentDish) {
+                    state.totalItemsCount = state.totalItemsCount - currentDish.quantity
+                    state.totalPrice = state.totalPrice - currentDish.price * currentDish.quantity
+                    state.dishes.splice(currentDishIdx, 1)
+                }
             }
         },
     },
