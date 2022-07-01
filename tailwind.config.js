@@ -12,6 +12,7 @@ module.exports = {
             },
             fontFamily: {
                 "zing-rust": ["zing-rust", "system-ui"],
+                Gilroy: ["Gilroy"],
             },
             keyframes: {
                 slideArrow: {

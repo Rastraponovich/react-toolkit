@@ -1,4 +1,5 @@
 import { LocationMarkerIcon, PhoneIcon, SearchIcon } from "@heroicons/react/outline"
+import { OrderButton } from "features/order/order-button"
 import { Link } from "react-router-dom"
 
 export const Header = () => {
@@ -25,12 +26,7 @@ export const Header = () => {
                 </div>
             </div>
 
-            <button className="flex items-center rounded-[10px] bg-gradient-to-tr from-[#618967] to-[#72A479] py-3.5 px-3.5 ">
-                <span className="mr-5 text-sm font-semibold first-letter:uppercase">корзина</span>
-                <span className="relative ml-3 h-6 w-6 rounded-full bg-white text-[#403C3B]  before:absolute before:-left-4 before:h-[100%] before:w-px  before:bg-white/30 before:content-['']">
-                    4
-                </span>
-            </button>
+            <OrderButton />
         </header>
     )
 }
