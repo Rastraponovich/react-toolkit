@@ -40,9 +40,19 @@ export const AlbumsPage = () => {
             </div>
 
             {pending ? <AlbumListSkeleton /> : <AlbumList />}
+<<<<<<< HEAD
+<<<<<<< HEAD
             {totalCount > 0 && (
                 <Pagination loading={loading} currentPage={page!} cb={handleSetPage} count={totalCount} limit={10} />
             )}
+=======
+            <Pagination loading={loading} currentPage={page!} cb={handleSetPage} count={totalCount} limit={10} />
+>>>>>>> 1192a4b (some hover animation)
+=======
+            {totalCount > 0 && (
+                <Pagination loading={loading} currentPage={page!} cb={handleSetPage} count={totalCount} limit={10} />
+            )}
+>>>>>>> f9f63aa (some ui fixes)
         </section>
     )
 }
