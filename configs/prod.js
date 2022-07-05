@@ -2,7 +2,6 @@ const paths = require("./paths")
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const stylesHandler = MiniCssExtractPlugin.loader
-
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
@@ -12,6 +11,41 @@ module.exports = {
         index: {
             import: `${paths.src}/index.tsx`,
         },
+    },
+    module: {
+        rules: [
+            {
+                test: /\.[jt]sx?$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: "ts-loader",
+                    },
+                ],
+            },
+            {
+                test: /\.(sass|scss|css)$/,
+                use: [
+                    stylesHandler,
+                    {
+                        loader: "css-loader",
+                        options: {
+                            sourceMap: true,
+                            importLoaders: 1,
+                            modules: false,
+                        },
+                    },
+                    { loader: "postcss-loader", options: { sourceMap: true } },
+                ],
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg|eot|ttf|woff2?)$/i,
+                type: "asset/resource",
+                generator: {
+                    filename: "assets/[hash][ext][query]",
+                },
+            },
+        ],
     },
     devtool: false,
     output: {
