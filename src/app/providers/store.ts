@@ -2,8 +2,8 @@ import { configureStore } from "@reduxjs/toolkit"
 
 import { AlertModel } from "widgets/alert"
 import { DishModel } from "entities/dishes"
-import { OrderModel } from "features/order"
 import { CategoryModel } from "entities/categories"
+import { OrderModel } from "features/order"
 
 export const store = configureStore({
     reducer: {
