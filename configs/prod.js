@@ -2,6 +2,8 @@ const paths = require("./paths")
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const stylesHandler = MiniCssExtractPlugin.loader
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+
 module.exports = {
     mode: "production",
     target: "browserslist",
@@ -39,6 +41,9 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|gif|svg|eot|ttf|woff2?)$/i,
                 type: "asset/resource",
+                generator: {
+                    filename: "assets/[hash][ext][query]",
+                },
             },
         ],
     },
@@ -53,7 +58,12 @@ module.exports = {
             filename: "css/[name].[contenthash].css",
             chunkFilename: "[id].css",
         }),
+        new HtmlWebpackPlugin({
+            template: `${paths.public}/index.html`,
+            filename: "index.html",
+        }),
     ],
+
     optimization: {
         runtimeChunk: "single",
     },
