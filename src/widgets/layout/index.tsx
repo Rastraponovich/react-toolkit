@@ -6,7 +6,6 @@ import { Header } from "widgets/header"
 
 export const Layout = () => {
     const navigate = useNavigate()
-    const handleBack = () => navigate(-1)
     return (
         <>
             <Header />
