@@ -1,16 +1,10 @@
 const paths = require("./paths")
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-<<<<<<< HEAD
 const stylesHandler = MiniCssExtractPlugin.loader
-<<<<<<< HEAD
-=======
 
->>>>>>> 63b2662 (clean unused code)
-=======
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 
->>>>>>> 33899ef (new webpack config for build)
 module.exports = {
     mode: "production",
     target: "browserslist",
@@ -19,7 +13,11 @@ module.exports = {
             import: `${paths.src}/index.tsx`,
         },
     },
-<<<<<<< HEAD
+    devtool: false,
+    output: {
+        filename: "js/[name].[contenthash].bundle.js",
+        publicPath: "./",
+    },
     module: {
         rules: [
             {
@@ -31,6 +29,7 @@ module.exports = {
                     },
                 ],
             },
+
             {
                 test: /\.(sass|scss|css)$/,
                 use: [
@@ -49,20 +48,9 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|gif|svg|eot|ttf|woff2?)$/i,
                 type: "asset/resource",
-                generator: {
-                    filename: "assets/[hash][ext][query]",
-                },
             },
         ],
     },
-=======
->>>>>>> 63b2662 (clean unused code)
-    devtool: false,
-    output: {
-        filename: "js/[name].[contenthash].bundle.js",
-        publicPath: "./",
-    },
-
     plugins: [
         new MiniCssExtractPlugin({
             filename: "css/[name].[contenthash].css",
