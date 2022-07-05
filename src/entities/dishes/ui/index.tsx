@@ -76,7 +76,11 @@ export const LineDish = memo(({ dishId, quantity, price, id }: LineDishProps) =>
                 <RoundedDecreaseDishButton id={dishId} />
 
                 <span className="">{price * quantity} Р</span>
+<<<<<<< HEAD
                 <RoundedRemoveLineDishButton id={id} />
+=======
+                <RoundedRemoveLineDishButton id={dishId} />
+>>>>>>> logos-application
             </div>
         </div>
     )
