@@ -5,7 +5,7 @@ import { App } from "./app"
 import { Provider } from "react-redux"
 import { store } from "app/providers"
 
-const rootDocument = document.getElementById("rooot")
+const rootDocument = document.getElementById("root")
 
 try {
     const root = ReactDOM.createRoot(rootDocument!)
